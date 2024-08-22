@@ -1,0 +1,41 @@
+<section class="bg-gray-800 font-sans h-full text-white flex items-center justify-center overflow-hidden">
+  <div class="rounded-lg shadow-md p-6 w-full">
+      <h1 class="text-3xl font-semibold text-indigo-300 mb-4 text-center">{{ data.titleModal }}</h1>
+      <form [formGroup]="formTodo" class="space-y-4">
+          <div class="mb-4">
+              <label for="taskTitle" class="block font-semibold text-lg">Título:</label>
+              <input type="text" formControlName="title"
+                  class="border p-2 rounded-md bg-gray-100 text-gray-800 w-full" placeholder="Hacer jugo de naranja"
+                  required>
+              <mat-error *ngIf="formTodo?.get('title')?.hasError('required') && formTodo?.get('title')?.touched">
+                  El título es obligatorio
+              </mat-error>
+          </div>
+          <div class="mb-4">
+              <label for="taskDescription" class="block font-semibold text-lg">Descripción:</label>
+              <textarea formControlName="description"
+                  placeholder="1. Comprar naranjas.&#10;2. Exprimir naranjas.&#10;3. Servir jugo."
+                  class="border p-2 rounded-md bg-gray-100 text-gray-800 w-full" rows="3"></textarea>
+              <mat-error *ngIf="formTodo?.get('description')?.hasError('required')">
+                  La descripción es obligatoria
+              </mat-error>
+          </div>
+          <div *ngIf="modeEdit" class="flex items-center mb-4">
+              <span class="font-semibold mr-2">Estado:</span>
+              <app-buttons-status [currentState]="data.todo.status"
+                  (newState)="onChangeCurrentState($event)"></app-buttons-status>
+          </div>
+          <div class="flex justify-center items-center space-x-4">
+              <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full shadow-md" mat-button
+                  mat-dialog-close>
+                  Cerrar
+              </button>
+              <button type="submit"
+                  [ngClass]="(formTodo.valid && (!modeEdit || formChanged)) ? 'bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full shadow-md' : 'bg-gray-500 text-gray-600 py-2 px-4 rounded-full shadow-md'"
+                  (click)="saveTodo()" [disabled]="!(formTodo.valid && (!modeEdit || formChanged))">
+                  Guardar
+              </button>
+          </div>
+      </form>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+<div [ngClass]="getStatusClass()" class="rounded-full p-1" [matMenuTriggerFor]="menu">
+  <button class="flex items-center group" aria-haspopup="true" aria-expanded="false">
+      <span class="ml-2 text-xs">{{ currentState()?.name }}</span>
+      <i class="ml-2 fa-solid fa-caret-down text-gray-300"></i>
+  </button>
+  <mat-menu #menu="matMenu" class="bg-gray-800 border border-gray-600">
+      <button *ngFor="let status of statuses" mat-menu-item class="text-gray-700"
+          (click)="changeState(status.id, status.name)">
+          <span class="text-xs {{status.textStyle}}">{{ status.name }}</span>
+      </button>
+  </mat-menu>
+</div>

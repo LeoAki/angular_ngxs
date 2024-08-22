@@ -1,0 +1,16 @@
+<div class="flex flex-col items-center justify-center p-5 gap-6">
+
+  <div class="text-center">
+    <p class="text-lg font-bold mb-4">{{ data.title }}</p>
+    <p class="text-base text-gray-700 mb-4">{{ data.description }}</p>
+  </div>
+
+  <div class="flex justify-center gap-3" mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="false" color="warn"
+      class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-full shadow-md" mat-button>No</button>
+    <button mat-raised-button [mat-dialog-close]="true"
+      class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full shadow-md" mat-button mat-dialog-close>
+      Sí
+    </button>
+  </div>
+</div>

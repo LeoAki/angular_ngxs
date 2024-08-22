@@ -1,0 +1,20 @@
+<div class="bg-gray-800 rounded-lg shadow-md p-4">
+  <h2 class="text-xl font-semibold mb-4 text-indigo-300">{{title()}}</h2>
+  <div *ngFor="let task of tasks()" class="bg-blue-700 rounded-md shadow mb-2 flex">
+      <div class="flex-grow p-3 cursor-pointer" (click)="editTodoModal(task)">
+          <p [ngClass]="{'line-through': task.status._id === 3}"
+              class="text-sm text-white">{{ task.title }}</p>
+      </div>
+      <div class="p-2 flex justify-center items-center text-white">
+          <app-buttons-status
+            [currentState]="task.status"
+            (newState)="updateStatus($event, task._id)"
+          ></app-buttons-status>
+      </div>
+      <button class="text-red-700 hover:scale-110 transform transition-transform duration-300" aria-label="Example icon button with a delete icon"
+      (click)="deleteTodo(task._id)">
+          <mat-icon>delete</mat-icon>
+      </button>
+
+  </div>
+</div>
