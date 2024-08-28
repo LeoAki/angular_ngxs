@@ -1,6 +1,6 @@
 <div class="bg-gray-800 rounded-lg shadow-md p-4">
   <h2 class="text-xl font-semibold mb-4 text-indigo-300">{{title()}}</h2>
-  <div *ngFor="let task of tasks()" class="bg-blue-700 rounded-md shadow mb-2 flex">
+  <div *ngFor="let task of tasks | async" class="bg-blue-700 rounded-md shadow mb-2 flex">
       <div class="flex-grow p-3 cursor-pointer" (click)="editTodoModal(task)">
           <p [ngClass]="{'line-through': task.status._id === 3}"
               class="text-sm text-white">{{ task.title }}</p>
